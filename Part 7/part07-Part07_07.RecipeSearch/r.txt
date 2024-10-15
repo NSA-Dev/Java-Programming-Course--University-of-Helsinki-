@@ -1,0 +1,30 @@
+Pancake dough
+60
+milk
+egg
+flour
+sugar
+salt
+butter
+
+Sausage soup
+20
+sausage
+potato
+water
+
+Meatballs
+20
+ground meat
+egg
+breadcrumbs
+
+Tofu rolls
+30
+tofu
+rice
+water
+carrot
+cucumber
+avocado
+wasabi

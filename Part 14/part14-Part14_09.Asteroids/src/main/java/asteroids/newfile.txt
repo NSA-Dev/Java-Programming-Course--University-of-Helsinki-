@@ -1,0 +1,100 @@
+
+ new AnimationTimer() {
+
+            @Override
+            public void handle(long now) {
+                if (pressedKeys.getOrDefault(KeyCode.LEFT, false)) {
+                    shipPlayer.turnLeft();
+                }
+
+                if (pressedKeys.getOrDefault(KeyCode.RIGHT, false)) {
+                    shipPlayer.turnRight();
+                }
+
+                if (pressedKeys.getOrDefault(KeyCode.UP, false)) {
+                    shipPlayer.accelerate();
+                }
+
+                if (pressedKeys.getOrDefault(KeyCode.DOWN, false)) {
+                    shipPlayer.decelerate();
+                }
+                if (pressedKeys.getOrDefault(KeyCode.SPACE, false) && projectiles.size() < 3) {
+                    Projectile projectile = new Projectile((int) shipPlayer.getCharacter().getTranslateX(), (int) shipPlayer.getCharacter().getTranslateY());
+                    projectile.getCharacter().setRotate(shipPlayer.getCharacter().getRotate());
+                    projectiles.add(projectile);
+
+                    projectile.accelerate();
+                    projectile.setMovement(projectile.getMovement().normalize().multiply(3));
+
+                    windowPane.getChildren().add(projectile.getCharacter());
+                }
+
+                shipPlayer.move();
+                asteroids.forEach(asteroid -> asteroid.move());
+                projectiles.forEach(projectile -> projectile.move());
+
+                asteroids.forEach(asteroid -> {
+                    if (shipPlayer.collide(asteroid)) {
+                        stop();
+                    }
+                });
+
+                projectiles.forEach(projectile -> {
+                    List<Asteroid> collisions = asteroids.stream()
+                            .filter(asteroid -> asteroid.collide(projectile))
+                            .collect(Collectors.toList());
+
+                    collisions.stream().forEach(collided -> {
+                        asteroids.remove(collided);
+                        windowPane.getChildren().remove(collided.getCharacter());
+                    });
+                });
+
+                List<Projectile> projectilesToRemove = projectiles.stream().filter(projectile -> {
+                    List<Asteroid> collisions = asteroids.stream()
+                            .filter(asteroid -> asteroid.collide(projectile))
+                            .collect(Collectors.toList());
+
+                    if (collisions.isEmpty()) {
+                        return false;
+                    }
+
+                    collisions.stream().forEach(collided -> {
+                        asteroids.remove(collided);
+                        windowPane.getChildren().remove(collided.getCharacter());
+                    });
+
+                    return true;
+                }).collect(Collectors.toList());
+
+                projectilesToRemove.forEach(projectile -> {
+                    windowPane.getChildren().remove(projectile.getCharacter());
+                    projectiles.remove(projectile);
+                });
+
+                projectiles.forEach(projectile -> {
+                    asteroids.forEach(asteroid -> {
+                        if (projectile.collide(asteroid)) {
+                            projectile.setAlive(false);
+                            asteroid.setAlive(false);
+                        }
+                    });
+                });
+
+                projectiles.stream()
+                        .filter(projectile -> !projectile.isAlive())
+                        .forEach(projectile -> windowPane.getChildren().remove(projectile.getCharacter()));
+                projectiles.removeAll(projectiles.stream()
+                        .filter(projectile -> !projectile.isAlive())
+                        .collect(Collectors.toList()));
+
+                asteroids.stream()
+                        .filter(asteroid -> !asteroid.isAlive())
+                        .forEach(asteroid -> windowPane.getChildren().remove(asteroid.getCharacter()));
+                asteroids.removeAll(asteroids.stream()
+                        .filter(asteroid -> !asteroid.isAlive())
+                        .collect(Collectors.toList()));
+
+            }
+
+        }.start();

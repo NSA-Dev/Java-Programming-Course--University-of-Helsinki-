@@ -1,0 +1,26 @@
+#surefire
+#Thu Aug 08 13:37:23 CEST 2024
+classPathUrl.4=C\:\\Users\\Nikita\\.m2\\repository\\fi\\helsinki\\cs\\tmc\\edu-test-utils\\0.4.2\\edu-test-utils-0.4.2.jar
+testSuiteDefinitionTestSourceDirectory=F\:\\JavaMooc\\mooc-java-programming-ii\\part08-Part08_05.TodoList\\src\\test\\java
+includes1=**/*Test.java
+includes2=**/*TestCase.java
+runOrder=filesystem
+includes0=**/Test*.java
+reportsDirectory=F\:\\JavaMooc\\mooc-java-programming-ii\\part08-Part08_05.TodoList\\target\\surefire-reports
+tc.0=TodoListTest
+surefireClassPathUrl.0=C\:\\Users\\Nikita\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-junit4\\2.12.4\\surefire-junit4-2.12.4.jar
+classPathUrl.0=F\:\\JavaMooc\\mooc-java-programming-ii\\part08-Part08_05.TodoList\\target\\test-classes
+classPathUrl.1=F\:\\JavaMooc\\mooc-java-programming-ii\\part08-Part08_05.TodoList\\target\\classes
+classPathUrl.2=C\:\\Users\\Nikita\\.m2\\repository\\junit\\junit\\4.12\\junit-4.12.jar
+classPathUrl.3=C\:\\Users\\Nikita\\.m2\\repository\\org\\hamcrest\\hamcrest-core\\1.3\\hamcrest-core-1.3.jar
+testClassesDirectory=F\:\\JavaMooc\\mooc-java-programming-ii\\part08-Part08_05.TodoList\\target\\test-classes
+useManifestOnlyJar=true
+runStatisticsFile=F\:\\JavaMooc\\mooc-java-programming-ii\\part08-Part08_05.TodoList\\.surefire-77A540FBFB20CE27A2A85DC57E8D18C4C63444BE
+providerConfiguration=org.apache.maven.surefire.junit4.JUnit4Provider
+failIfNoTests=false
+isTrimStackTrace=true
+surefireClassPathUrl.1=C\:\\Users\\Nikita\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-api\\2.12.4\\surefire-api-2.12.4.jar
+excludes0=**/*$*
+enableAssertions=true
+childDelegation=false
+useSystemClassLoader=true

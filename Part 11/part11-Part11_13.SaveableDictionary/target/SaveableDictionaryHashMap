@@ -1,0 +1,38 @@
+package dictionary;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ *
+ * @author Nikita
+ */
+public class SaveableDictionary {
+
+    private HashMap<String, String> dictionary;
+
+    public SaveableDictionary() {
+        dictionary = new HashMap<>();
+    }
+
+    public void add(String words, String translation) {
+        if (!dictionary.containsKey(words)
+                && !dictionary.containsValue(translation)) {
+            dictionary.put(words, translation); 
+        }
+    }
+    
+    public String translate(String word) {
+        if(dictionary.containsKey(word)) {
+            return dictionary.get(word);
+        } else if (dictionary.containsValue(word)) {
+            for (Map.Entry<String, String> entry : dictionary.entrySet()) {
+                if (entry.getValue().equals(word)) {
+                    return entry.getKey();
+                }
+            }
+        }
+        return null;
+    }
+
+}
